@@ -1,0 +1,19 @@
+
+.rayr-tooltip {
+    position: relative;
+    .top{
+        cursor: pointer;
+        margin: 5px;
+    }
+    .box{
+        position: absolute;
+        display: inline-flex; 
+        width: max-content; 
+    }
+    .box-true{
+        visibility: inherit;
+    }
+    .box-false{
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,22 @@
+.rayr-tooltip {
+  position: relative;
+}
+
+.rayr-tooltip .top {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.rayr-tooltip .box {
+  position: absolute;
+  display: inline-flex;
+  width: max-content;
+}
+
+.rayr-tooltip .box-true {
+  visibility: inherit;
+}
+
+.rayr-tooltip .box-false {
+  visibility: hidden;
+}
