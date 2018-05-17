@@ -40,7 +40,7 @@ class RayrTooltip extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShow: true,
+            isShow: false,
             position: this.props.position || 'right'
         }
         this.show = this.show.bind(this);
