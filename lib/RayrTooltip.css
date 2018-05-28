@@ -20,3 +20,7 @@
 .rayr-tooltip .box-false {
   visibility: hidden;
 }
+
+.rayr-tooltip .red {
+  color: red;
+}
