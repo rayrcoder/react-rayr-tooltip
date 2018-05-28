@@ -61,7 +61,7 @@ class RayrTooltip extends React.Component {
     }
     componentDidMount() {
         document.querySelector('.top').addEventListener('mouseover', this.show, false);
-        // document.querySelector('.top').addEventListener('mouseout', this.showOff, false);
+        document.querySelector('.top').addEventListener('mouseout', this.showOff, false);
     }
 
     render() {
