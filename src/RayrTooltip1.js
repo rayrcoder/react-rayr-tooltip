@@ -2,22 +2,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+class Top extends React.Component {
+    render() {
+        return (
+            <span className={this.props.className}>
+                {this.props.children}
+            </span>
+
+        )
+    }
+}
+
+class Box extends React.Component {
+    render() {
+        return (
+            <span className={this.props.className}>
+                {this.props.children}
+            </span>
+        )
+    }
+
+}
+
 class RayrTooltip extends React.Component {
 
     static propTypes = {
-        position: PropTypes.oneOf(['top', 'left', 'right','buttom'])
+        position: PropTypes.oneOf(['top', 'left', 'right','bottom'])
     };
 
     static defaultProps = {
         position:'right'
     };
 
+    static Top = Top;
+    static Box = Box;
+
     constructor(props) {
         super(props);
         this.state = {
             isShow: false,
-            position: this.props.position || 'right',
-            content: this.props.content
+            position: this.props.position || 'right'
         }
         this.show = this.show.bind(this);
         this.showOff = this.showOff.bind(this);
@@ -43,13 +67,12 @@ class RayrTooltip extends React.Component {
             boxEle.style.left = -(boxEle_width - topEle_width) * 0.5 + 5 + 'px';
         } else if (this.state.position === 'right') {
             boxEle.style.top = -(boxEle_height - topEle_height) * 0.5 + 'px';
-        } else if(this.state.position === 'buttom') {
+        } else if(this.state.position === 'bottom') {
             boxEle.style.top = topEle_height + 'px';
             boxEle.style.left = -(boxEle_width - topEle_width) * 0.5 + 5 + 'px';
         }
     }
     show() {
-        document.querySelector('.box').innerHTML=this.state.content;
         this.setState({
             isShow: true
         }, this.setPosition())
@@ -61,14 +84,19 @@ class RayrTooltip extends React.Component {
     }
     componentDidMount() {
         document.querySelector('.top').addEventListener('mouseover', this.show, false);
-        // document.querySelector('.top').addEventListener('mouseout', this.showOff, false);
+        document.querySelector('.top').addEventListener('mouseout', this.showOff, false);
+    }
+    mapList() {
+        return [
+            <span key="top" className="top">{this.props.children[0]}</span>,
+            <span key="box" className={`box box-${this.state.position} box-${this.state.isShow}`}>{this.props.children[1]}</span>
+        ];
     }
 
     render() {
         return (
             <span className={`rayr-tooltip ${this.props.className}`}>
-                <span className="top">{this.props.children}</span>
-                <span className={`box box-${this.state.isShow}`}></span>
+                {this.mapList()}
             </span>
         );
     }
